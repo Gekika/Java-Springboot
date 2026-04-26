@@ -8,6 +8,7 @@ import org.checkerframework.checker.units.qual.A;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "song")
@@ -34,7 +35,7 @@ public class Song {
 
     @CreationTimestamp
     @Column(name = "created_at",  nullable = false, updatable = false)
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "appuser_id",  nullable = false)
