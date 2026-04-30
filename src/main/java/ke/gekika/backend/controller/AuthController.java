@@ -1,0 +1,28 @@
+package ke.gekika.backend.controller;
+
+
+import jakarta.validation.Valid;
+import ke.gekika.backend.dto.request.RegisterUserRequest;
+import ke.gekika.backend.dto.response.MessageResponse;
+import ke.gekika.backend.service.AuthService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+
+    @Autowired
+    private AuthService authService;
+
+    @PostMapping("/registerUser")
+    public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody RegisterUserRequest request) {
+        MessageResponse response = authService.registerUser(request);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+}
