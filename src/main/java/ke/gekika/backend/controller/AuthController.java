@@ -2,7 +2,9 @@ package ke.gekika.backend.controller;
 
 
 import jakarta.validation.Valid;
+import ke.gekika.backend.dto.request.LoginUserRequest;
 import ke.gekika.backend.dto.request.RegisterUserRequest;
+import ke.gekika.backend.dto.response.AppUserResponse;
 import ke.gekika.backend.dto.response.MessageResponse;
 import ke.gekika.backend.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +27,12 @@ public class AuthController {
         MessageResponse response = authService.registerUser(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+    @PostMapping("/loginUser")
+    public ResponseEntity<AppUserResponse> loginUser(@Valid @RequestBody LoginUserRequest request) {
+        AppUserResponse response = authService.loginUser(request);
+        return ResponseEntity.ok(response);
+    }
+
+
 }
